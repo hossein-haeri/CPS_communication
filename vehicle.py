@@ -6,24 +6,6 @@ import threading
 import sys
 
 
-
-
-
-
-
-
-# def send_measurement():
-#   with open("data.csv") as f:
-#       lis = [line.split() for line in f]        # create a list of lists
-#       print(lis[0])
-#       for i, x in enumerate(lis):              #print the list items 
-#           MESSAGE = bytes(str(VEHICLE_ID)+', '+x[0],"utf-8")
-#           print("measurement is sent: %s" % MESSAGE)
-#           print("\n")
-#           sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
-#           time.sleep(1) # wait for 1 second
-
-
 class Vehicle:
     def __init__(self, ip):
         self.id = random.randrange(1000)
@@ -65,8 +47,8 @@ class Vehicle:
 
 if __name__ == '__main__':
 
-    SERVER_IP = "127.0.0.1"
-    VEHICLE_IP = "127.0.0.1"
+    SERVER_IP = "192.168.1.3"
+    VEHICLE_IP = "192.168.1.2"
     MEAS_PORT = 5001
     PREV_REQ_PORT = 5002
     PREV_RES_PORT = 5003

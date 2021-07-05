@@ -71,15 +71,16 @@ class Server:
             while True:
                 msg, addr = sock.recvfrom(2048) # buffer size is 1024 bytes
                 row_req = msg.decode().split(', ')
+                row_req.insert(1, addr[0])
                 vehicle_id = row_req[0]
-                vehicle_ip = addr[0]
+                vehicle_ip = row_req[1]
                 self.Q.append(row_req)
                 print("received a preview request from vehicle %s, vehicle IP: %s" % (vehicle_id, vehicle_ip))
         except KeyboardInterrupt:
             print('interrupted!')
 
 
-    def respond(self,sock,PORT):
+    def respond(self,sock, PORT):
         try:    
             while True:
                 if len(self.Q) > 0:
@@ -91,10 +92,11 @@ class Server:
                     fric_joined_string = ",".join(fric_str_list)
                     resp = bytes(fric_joined_string, "utf-8")
                     # print("response is sent: %s" % resp)
-                    IP = "127.0.0.1" # NEEDS TO BE CHANGED TO VEHICLE ID
+                    # IP = "127.0.0.1" # NEEDS TO BE CHANGED TO VEHICLE ID
+                    IP = self.Q[0][1]
                     sock.sendto(resp, (IP, PORT))
                     # print('length of the que before pop is ', len(self.Q))
-                    print('Responded to vehicle %s (que length is now: %s)' % (self.Q[0][0], len(self.Q)-1))
+                    print('responded to vehicle %s (que length is now: %s)' % (self.Q[0][0], len(self.Q)-1))
                     self.Q.pop(0)
 
         except KeyboardInterrupt:
@@ -105,7 +107,7 @@ class Server:
 if __name__ == '__main__':
     
 
-    SERVER_IP = "127.0.0.1"
+    SERVER_IP = "192.168.1.3"
     MEAS_PORT = 5001
     PREV_REQ_PORT = 5002
     PREV_RES_PORT = 5003

@@ -95,7 +95,6 @@ class Server:
                     # IP = "127.0.0.1" # NEEDS TO BE CHANGED TO VEHICLE ID
                     IP = self.Q[0][1]
                     sock.sendto(resp, (IP, PORT))
-                    # print('length of the que before pop is ', len(self.Q))
                     print('responded to vehicle %s (que length is now: %s)' % (self.Q[0][0], len(self.Q)-1))
                     self.Q.pop(0)
 
@@ -107,7 +106,12 @@ class Server:
 if __name__ == '__main__':
     
 
-    SERVER_IP = "192.168.1.3"
+    # SERVER_IP = "192.168.1.3"
+
+    SERVER_IP = "127.0.0.1"
+    VEHICLE_IP = "127.0.0.1"
+
+
     MEAS_PORT = 5001
     PREV_REQ_PORT = 5002
     PREV_RES_PORT = 5003

@@ -47,8 +47,12 @@ class Vehicle:
 
 if __name__ == '__main__':
 
-    SERVER_IP = "192.168.1.3"
-    VEHICLE_IP = "192.168.1.2"
+    # SERVER_IP = "192.168.1.3"
+    # VEHICLE_IP = "192.168.1.2"
+
+    SERVER_IP = "127.0.0.1"
+    VEHICLE_IP = "127.0.0.1"
+    
     MEAS_PORT = 5001
     PREV_REQ_PORT = 5002
     PREV_RES_PORT = 5003

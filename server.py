@@ -6,10 +6,7 @@ import threading
 import sys
 import pandas as pd
 
-# class Client:
-#     def __init__(self, vehicle_id, vehicle_ip):
-#         self.id = vehicle_id
-#         self.ip = vehicle_ip
+
 
 
 class Server:
